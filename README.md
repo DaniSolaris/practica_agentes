@@ -24,7 +24,7 @@ explorador ──► preparador ──┬──► entrenador (lineal)        �
 
 ## Puesta en marcha
 
-Requiere Python 3.10+ y Java 17+ (para Spark).
+Requiere Python 3.10+ (recomendado 3.12) y Java 17+ (para Spark).
 
 ```bash
 python3 -m venv .venv
