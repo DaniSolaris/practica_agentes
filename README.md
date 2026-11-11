@@ -33,6 +33,15 @@ pip install -r requirements.txt
 python scripts/descargar_datos.py
 ```
 
+Con [uv](https://docs.astral.sh/uv/) (descarga Python 3.12 automáticamente):
+
+```bash
+uv venv
+source .venv/bin/activate        # Windows: .venv\Scripts\activate
+uv pip install -r requirements.txt
+python scripts/descargar_datos.py
+```
+
 Los datos se guardan en `data/raw/` y no se suben a git.
 
 ## Uso
