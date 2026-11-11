@@ -1,0 +1,21 @@
+{
+  "modelo": "lineal",
+  "params": {
+    "regParam": 0.01,
+    "elasticNetParam": 0.0,
+    "maxIter": 100
+  },
+  "features": [
+    "trip_distance",
+    "es_aeropuerto",
+    "mismo_barrio",
+    "do_borough",
+    "pu_borough"
+  ],
+  "rmse_min": 7.1925,
+  "mae_min": 4.7667,
+  "r2": 0.6588,
+  "segundos_entrenamiento": 16.5,
+  "nombre": "lineal_v1",
+  "fecha": "2026-11-11T13:43:42"
+}
