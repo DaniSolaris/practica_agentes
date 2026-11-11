@@ -1,0 +1,37 @@
+{
+  "modelo": "random_forest",
+  "params": {
+    "numTrees": 30,
+    "maxDepth": 12
+  },
+  "features": [
+    "trip_distance",
+    "mismo_barrio",
+    "es_aeropuerto",
+    "pu_borough",
+    "do_borough",
+    "hora",
+    "dia_semana",
+    "PULocationID",
+    "DOLocationID",
+    "es_finde"
+  ],
+  "rmse_min": 5.6094,
+  "mae_min": 3.5483,
+  "r2": 0.7899,
+  "segundos_entrenamiento": 22.8,
+  "importancia_features": {
+    "trip_distance": 0.5164,
+    "mismo_barrio": 0.1387,
+    "pu_borough": 0.1066,
+    "do_borough": 0.0764,
+    "hora": 0.061,
+    "es_aeropuerto": 0.0541,
+    "PULocationID": 0.0189,
+    "DOLocationID": 0.0097,
+    "dia_semana": 0.0092,
+    "es_finde": 0.0089
+  },
+  "nombre": "random_forest_v2",
+  "fecha": "2026-11-11T14:38:59"
+}

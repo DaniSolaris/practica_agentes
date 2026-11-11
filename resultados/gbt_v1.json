@@ -1,0 +1,38 @@
+{
+  "modelo": "gbt",
+  "params": {
+    "maxIter": 30,
+    "maxDepth": 5,
+    "stepSize": 0.1
+  },
+  "features": [
+    "trip_distance",
+    "mismo_barrio",
+    "es_aeropuerto",
+    "pu_borough",
+    "do_borough",
+    "hora",
+    "dia_semana",
+    "PULocationID",
+    "DOLocationID",
+    "es_finde"
+  ],
+  "rmse_min": 5.6427,
+  "mae_min": 3.5496,
+  "r2": 0.7874,
+  "segundos_entrenamiento": 12.6,
+  "importancia_features": {
+    "trip_distance": 0.5684,
+    "hora": 0.1657,
+    "pu_borough": 0.0484,
+    "do_borough": 0.0452,
+    "dia_semana": 0.039,
+    "es_aeropuerto": 0.0304,
+    "PULocationID": 0.0295,
+    "DOLocationID": 0.0274,
+    "es_finde": 0.026,
+    "mismo_barrio": 0.0199
+  },
+  "nombre": "gbt_v1",
+  "fecha": "2026-11-11T14:38:26"
+}

@@ -1,0 +1,26 @@
+{
+  "modelo": "lineal",
+  "params": {
+    "regParam": 0.0,
+    "elasticNetParam": 0.0,
+    "maxIter": 100
+  },
+  "features": [
+    "trip_distance",
+    "mismo_barrio",
+    "es_aeropuerto",
+    "pu_borough",
+    "do_borough",
+    "hora",
+    "dia_semana",
+    "hora_punta",
+    "es_finde",
+    "passenger_count"
+  ],
+  "rmse_min": 6.9687,
+  "mae_min": 4.7151,
+  "r2": 0.6758,
+  "segundos_entrenamiento": 4.4,
+  "nombre": "lineal_v5",
+  "fecha": "2026-11-11T14:39:08"
+}
