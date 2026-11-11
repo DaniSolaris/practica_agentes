@@ -8,6 +8,7 @@ hacerlo en Spark.
 
 from __future__ import annotations
 
+import os
 import time
 from pathlib import Path
 
@@ -24,6 +25,7 @@ from pyspark.sql import functions as F
 
 RAIZ = Path(__file__).resolve().parent.parent
 DATOS_RAW = RAIZ / "data" / "raw"
+DATOS_PROCESADOS = RAIZ / "data" / "procesado" / "viajes.parquet"
 SEMILLA = 42
 
 # Zonas de aeropuerto según la tabla de zonas de la TLC
@@ -37,13 +39,18 @@ _spark: SparkSession | None = None
 # ---------------------------------------------------------------------------
 
 def obtener_spark() -> SparkSession:
-    """Devuelve la sesión de Spark (la crea la primera vez)."""
+    """Devuelve la sesión de Spark (la crea la primera vez).
+
+    Núcleos y memoria se pueden ajustar con las variables de entorno
+    SPARK_CORES (por defecto todos) y SPARK_MEMORIA (por defecto 3g). Útil
+    cuando varios agentes entrenan modelos a la vez.
+    """
     global _spark
     if _spark is None:
         _spark = (
-            SparkSession.builder.master("local[*]")
+            SparkSession.builder.master(f"local[{os.environ.get('SPARK_CORES', '*')}]")
             .appName("practica_agentes")
-            .config("spark.driver.memory", "4g")
+            .config("spark.driver.memory", os.environ.get("SPARK_MEMORIA", "3g"))
             .config("spark.sql.session.timeZone", "UTC")
             .config("spark.ui.showConsoleProgress", "false")
             .getOrCreate()
@@ -201,6 +208,19 @@ def crear_features(df: DataFrame) -> DataFrame:
         )
         .withColumn("mismo_barrio", (F.col("pu_borough") == F.col("do_borough")).cast("int"))
     )
+
+
+def guardar_procesado(df: DataFrame) -> str:
+    """Guarda el dataset limpio y con features para que los entrenadores lo reutilicen."""
+    df.write.mode("overwrite").parquet(str(DATOS_PROCESADOS))
+    return str(DATOS_PROCESADOS.relative_to(RAIZ))
+
+
+def cargar_procesado() -> DataFrame:
+    """Carga el dataset que dejó preparado guardar_procesado."""
+    if not DATOS_PROCESADOS.exists():
+        raise FileNotFoundError("No hay datos procesados. Ejecuta antes: python scripts/cli.py preparar")
+    return obtener_spark().read.parquet(str(DATOS_PROCESADOS))
 
 
 # ---------------------------------------------------------------------------
