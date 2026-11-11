@@ -223,3 +223,6 @@ __marimo__/
 spark-warehouse/
 metastore_db/
 derby.log
+
+# Datos (se descargan con scripts/descargar_datos.py)
+data/
